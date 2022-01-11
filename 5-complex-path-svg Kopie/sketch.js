@@ -116,7 +116,3 @@ function keyPressed() {
     );
   }
 }
-
-
-
-//Änderung !
