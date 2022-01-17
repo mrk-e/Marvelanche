@@ -24,17 +24,17 @@ function setup() {
   );
 
   strecke01 = new PolygonFromSVG(world,
-    { x: 150, y: 400, fromFile: './element2.svg', scale: 1, color: 'red' },
+    { x: 150, y: 400, fromFile: './element2-1.svg', scale: 1, color: 'red' },
     { isStatic: true, friction: 0.0 }
   );
 
   strecke02 = new PolygonFromSVG(world,
-    { x: 900, y: 520, fromFile: './element5.svg', scale: 1, color: 'white' },
+    { x: 900, y: 520, fromFile: './element5-1.svg', scale: 1, color: 'white' },
     { isStatic: true, friction: 0.0 }
   );
 
   strecke03 = new PolygonFromSVG(world,
-    { x: 1476, y: 620, fromFile: './element8.svg', scale: 1, color: 'white' },
+    { x: 1476, y: 620, fromFile: './element8-1.svg', scale: 1, color: 'white' },
     { isStatic: true, friction: 0.0 }
   );
 
@@ -78,6 +78,11 @@ function setup() {
     { isStatic: true, angle: 0, friction: 1  }
   );
 
+  rampe01 = new Block(world,
+    { x: 3100, y: 660, w: 200, h: 10, color: 'blue' },
+    { isStatic: true, angle: 0, friction: 1  }
+  );
+
   iglu01 = new Block(world,
     { x: 2000, y: 620, w: 40, h: 40, color: 'grey' },
     { isStatic: true, angle: 0  }
@@ -93,6 +98,8 @@ function setup() {
     { x: 2600, y: 200, w: 198, h: 61, image: aufzugImg },
     { isStatic: true, angle: 0  }
   );
+
+  frameRate(60);
 
   //run the engine
   Matter.Runner.run(engine);
@@ -119,6 +126,7 @@ function draw() {
   eis02.draw();
   holzstapeltest01.draw();
   iglu01.draw();
+  rampe01.draw();
 
   aufzug01.draw();
   aufzug02.draw();
@@ -130,6 +138,9 @@ function draw() {
   aufzug01Steuerung(aufzug01);
   aufzug02Steuerung(aufzug02);
 
+  //Anzeigen der FrameRate in der Konsole
+  let frameRateValue = getFrameRate();
+  console.log("Framerate: " + frameRateValue);
 }
 
 //Kamera
@@ -170,6 +181,11 @@ function eis(object) {
     object.body.position.x = object.body.position.x +1;
     engine.timing.timeScale = 1.5;
   }
+  //rampe01
+  if (x >= 3100 && x < 3300 && y >=520) {
+    object.body.position.x = object.body.position.x +1.5;
+    engine.timing.timeScale = 1.5;
+  }
   else 
   {
     object.body.position.x = object.body.position.x;
@@ -194,7 +210,6 @@ function aufzug01Steuerung (object) {
 
   if(posAufzug01Unten == true) {
     Matter.Body.setPosition(object.body, {x,y: y -1});
-    console.log(posAufzug01Unten);
     //y = y - 1 ;
     if (y < 200)
     {
@@ -217,7 +232,6 @@ function aufzug02Steuerung (object) {
 
   if(posAufzug02Unten == true) {
     Matter.Body.setPosition(object.body, {x,y: y -1});
-    console.log(posAufzug01Unten);
     //y = y - 1 ;
     if (y < 200)
     {
