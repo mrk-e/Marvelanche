@@ -9,13 +9,17 @@ let ball;
 let polygon;
 let ground;
 let aufzugImg;
+let ballImg;
 
 function setup() {
-  createCanvas(3840, 720); //1280
+  createCanvas(4480, 720); //1280
 
   //create an engine
   const engine = Matter.Engine.create();
   const world = engine.world;
+
+  aufzugImg = loadImage('Aufzug.png');
+  ballImg = loadImage('Schneekugel.png');
 
   //Strecke und Böden
   startpunkt = new Block(world,
@@ -43,6 +47,11 @@ function setup() {
     { isStatic: true, friction: 0.0 }
   );
 
+  strecke05 = new PolygonFromSVG(world,
+    { x: 3600, y: 604, fromFile: './element10-1.svg', scale: 1, color: 'white' },
+    { isStatic: true, friction: 0.0 }
+  );
+
   // Ball und Maus
   const wrap = {
     min: { x: 0, y: 0 },
@@ -51,8 +60,8 @@ function setup() {
 
   mouse = new Mouse(engine, canvas);
 
-  ball = new Ball(world,
-    { x: 30, y: 50, r: 26, color: 'white' },
+  ball = new SpriteBall(world,
+    { x: 2200, y: 50, r: 27, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
   
@@ -87,7 +96,6 @@ function setup() {
     { x: 2000, y: 620, w: 40, h: 40, color: 'grey' },
     { isStatic: true, angle: 0  }
   );
-    aufzugImg = loadImage('Aufzug.png');
 
   aufzug01 = new SpriteBlock(world,
     { x: 2300, y: 620, w: 198, h: 61, image: aufzugImg },
@@ -114,6 +122,7 @@ function draw() {
   strecke02.draw();
   strecke03.draw();
   strecke04.draw();
+  strecke05.draw();
 
 
   //Ball und Maus draw
@@ -247,7 +256,6 @@ function aufzug02Steuerung (object) {
     }
   }
 }
-
 
 //Sprung
 function keyPressed() {
