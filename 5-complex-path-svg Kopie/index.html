@@ -15,8 +15,49 @@
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBlock.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBall.js"></script>
-  <style> body {padding: 0; margin: 0;} </style>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    #iglu {
+      position: absolute;
+      left: 1950;
+      top: 570;
+      width: 113;
+      height: 73;
+      background: url('Iglo.png') no-repeat;
+      z-index: 1;
+    }
+
+    #stein01 {
+      position: absolute;
+      left: 820;
+      top: 484;
+      width: 83;
+      height: 50;
+      background: url('Stein.png') no-repeat;
+      z-index: 2;
+    }
+
+    #sprite-foreground {
+      position: absolute;
+      width: 600;
+      height: 385;
+      background: url('foreground.png') no-repeat;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
 </head>
+
 <body>
+  <div id="iglu"></div>
+  <div id="stein01"></div>
+
+  <!-- p5 canvas is generated on run time -->
+  <div id="sprite-foreground"></div>
 </body>
+
 </html>

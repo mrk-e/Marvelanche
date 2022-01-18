@@ -61,13 +61,13 @@ function setup() {
   mouse = new Mouse(engine, canvas);
 
   ball = new SpriteBall(world,
-    { x: 2200, y: 50, r: 27, image: ballImg },
+    { x: 30, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
   
   //Hindernisse und Spielmechanismen
   stein01 = new Block(world,
-    { x: 850, y: 510, w: 40, h: 40, color: 'grey' },
+    { x: 850, y: 510, w: 60, h: 40, color: 'grey' },
     { isStatic: true, angle: 0  }
   );
 
@@ -92,9 +92,9 @@ function setup() {
     { isStatic: true, angle: 0, friction: 1  }
   );
 
-  iglu01 = new Block(world,
-    { x: 2000, y: 620, w: 40, h: 40, color: 'grey' },
-    { isStatic: true, angle: 0  }
+  iglu01 = new PolygonFromSVG(world,
+    { x: 2000, y: 620, fromFile: './igluKontur.svg', scale: 1, color: 'white' },
+    { isStatic: true, friction: 0.0 }
   );
 
   aufzug01 = new SpriteBlock(world,
@@ -130,7 +130,6 @@ function draw() {
   mouse.draw();
 
   //Hindernisse und Spielmechanismen draw
-  stein01.draw();
   eis01.draw();
   eis02.draw();
   holzstapeltest01.draw();
