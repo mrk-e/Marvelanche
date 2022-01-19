@@ -8,8 +8,17 @@ Matter.use('matter-wrap');
 let ball;
 let polygon;
 let ground;
+
 let aufzugImg;
 let ballImg;
+
+let ebene01;
+let ebene02;
+let ebene03;
+let ebene04;
+
+let posAufzug01Unten = true;
+let posAufzug02Unten = false;
 
 function setup() {
   createCanvas(4480, 720); //1280
@@ -20,6 +29,11 @@ function setup() {
 
   aufzugImg = loadImage('Aufzug.png');
   ballImg = loadImage('Schneekugel.png');
+
+  ebene01 = 0;
+  ebene02 = 100;
+  ebene03 = 200;
+  ebene04 = 300;
 
   //Strecke und Böden
   startpunkt = new Block(world,
@@ -76,7 +90,6 @@ function setup() {
     { isStatic: true, angle: 0  }
   );
 
-
   eis01 = new Block(world,
     { x: 1000, y: 546, w: 200, h: 10, color: 'blue' },
     { isStatic: true, angle: 0, friction: 1  }
@@ -114,7 +127,7 @@ function setup() {
 }
 
 function draw() {
-  background('black');
+  background('green');
 
   //Strecke und Böden draw
   startpunkt.draw();
@@ -135,7 +148,6 @@ function draw() {
   holzstapeltest01.draw();
   iglu01.draw();
   rampe01.draw();
-
   aufzug01.draw();
   aufzug02.draw();
   
@@ -159,6 +171,16 @@ function scrollFollow(object) {
       $element.animate({
         scrollLeft: object.body.position.x - (1280 * 0.3) ,
       }, 720);
+
+      //Parallax effect
+      ebene01 = ebene01 + 1;
+      ebene02 = ebene02 + 5;
+      ebene03 = ebene03 + 50;
+      ebene04 = ebene04 + 10;
+      document.getElementById("ebene01").style.left = ebene01;
+      document.getElementById("ebene02").style.left = ebene02;
+      document.getElementById("ebene03").style.left = ebene03;
+      document.getElementById("ebene04").style.left = ebene04;
     }
   }
 }
@@ -185,7 +207,7 @@ function eis(object) {
     engine.timing.timeScale = 1.5;
   }
   //eis02
-  if (x >= 1700 && x < 1900 && y >=620) {
+  if (x >= 1650 && x < 1900 && y >=620) {
     object.body.position.x = object.body.position.x +1;
     engine.timing.timeScale = 1.5;
   }
@@ -208,9 +230,6 @@ function gameover(object) {
     Matter.Body.setPosition(object.body, {x:30,y:50});
   }
 }
-
-let posAufzug01Unten = true;
-let posAufzug02Unten = false;
 
 function aufzug01Steuerung (object) {
   const x = object.body.position.x;
@@ -263,7 +282,7 @@ function keyPressed() {
     Matter.Body.applyForce(
       ball.body,
       {x: ball.body.position.x, y: ball.body.position.y},
-      {x: 0.005 , y: -0.04}
-    );
+      {x: 0.005 , y: -0.05}
+    ); 
   }
 }

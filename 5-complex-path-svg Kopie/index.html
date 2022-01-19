@@ -15,6 +15,7 @@
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBlock.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBall.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script> -->
   <style>
     body {
       padding: 0;
@@ -41,12 +42,39 @@
       z-index: 2;
     }
 
-    #sprite-foreground {
+    #ebene01 {
       position: absolute;
       width: 600;
       height: 385;
-      background: url('foreground.png') no-repeat;
-      z-index: -1;
+      background: url('Sonne.png') no-repeat;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    #ebene02 {
+      position: absolute;
+      width: 3000;
+      height: 425;
+      background: url('Wolken.png') no-repeat;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    #ebene03 {
+      position: absolute;
+      width: 600;
+      height: 385;
+      background: url('Sonne.png') no-repeat;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    #ebene04 {
+      position: absolute;
+      width: 3000;
+      height: 425;
+      background: url('Wolken.png') no-repeat;
+      z-index: 6;
       pointer-events: none;
     }
   </style>
@@ -55,9 +83,11 @@
 <body>
   <div id="iglu"></div>
   <div id="stein01"></div>
-
-  <!-- p5 canvas is generated on run time -->
-  <div id="sprite-foreground"></div>
+  <!-- Parallex Effect -->
+  <div id="ebene01"></div>
+  <div id="ebene02"></div>
+  <div id="ebene03"></div>
+  <div id="ebene04"></div>
 </body>
 
 </html>
