@@ -14,11 +14,11 @@ let ballImg;
 
 let ebene01;
 let ebene02;
-let ebene03;
-let ebene04;
 
 let posAufzug01Unten = true;
 let posAufzug02Unten = false;
+let ballVisible = true;
+let endSequenz = false;
 
 function setup() {
   createCanvas(4480, 720); //1280
@@ -29,20 +29,14 @@ function setup() {
 
   aufzugImg = loadImage('Aufzug.png');
   ballImg = loadImage('Schneekugel.png');
-
+  
   ebene01 = 0;
-  ebene02 = 100;
-  ebene03 = 200;
-  ebene04 = 300;
+  ebene02 = 0;
 
   //Strecke und Böden
-  startpunkt = new Block(world,
-    { x: 0, y: 62, w: 100, h: 25, color: 'grey' },
-    { isStatic: true, angle: PI * 0.1  }
-  );
 
   strecke01 = new PolygonFromSVG(world,
-    { x: 150, y: 400, fromFile: './test1.svg', scale: 1, color: 'red' },
+    { x: 280, y: 500, fromFile: './pfad1.svg', scale: 1.2, color: 'red' },
     { isStatic: true, friction: 0.0 }
   );
 
@@ -82,13 +76,12 @@ function setup() {
   //Hindernisse und Spielmechanismen
   stein01 = new Block(world,
     { x: 850, y: 510, w: 60, h: 40, color: 'grey' },
-    { isStatic: true, angle: 0  }
+    { isStatic: true, angle: 0 }
   );
 
-  holzstapeltest01 = new Block(world,
-    { x: 1550, y: 620, w: 40, h: 40, color: 'grey' },
-    { isStatic: true, angle: 0  }
-  );
+  holzstapel01 = new PolygonFromPoints(world,
+    { x: 1544, y: 600, points: [ { x: 45, y: 0 }, { x: 90 ,y: 90 }, { x: 0, y: 90 }],
+    color: 'grey'}, { isStatic: true });
 
   eis01 = new Block(world,
     { x: 1000, y: 546, w: 200, h: 10, color: 'blue' },
@@ -106,7 +99,7 @@ function setup() {
   );
 
   iglu01 = new PolygonFromSVG(world,
-    { x: 2000, y: 620, fromFile: './igluKontur.svg', scale: 1, color: 'white' },
+    { x: 2010, y: 600, fromFile: './igloform2-1.svg', scale: 1, color: 'white' },
     { isStatic: true, friction: 0.0 }
   );
 
@@ -120,6 +113,24 @@ function setup() {
     { isStatic: true, angle: 0  }
   );
 
+  begrenzungHorizont01 = new Block(world,
+    { x: 0, y: 2, w: 1000, h: 2, color: 'blue' },
+    { isStatic: true }
+  );
+
+  begrenzungHorizont02 = new Block(world,
+    { x: 1000, y: 2, w: 1000, h: 2, color: 'blue' },
+    { isStatic: true }
+  );
+  begrenzungHorizont03 = new Block(world,
+    { x: 2000, y: 2, w: 1000, h: 2, color: 'blue' },
+    { isStatic: true }
+  );
+  begrenzungHorizont04 = new Block(world,
+    { x: 3000, y: 2, w: 1000, h: 2, color: 'blue' },
+    { isStatic: true }
+  );
+
   frameRate(60);
 
   //run the engine
@@ -127,10 +138,9 @@ function setup() {
 }
 
 function draw() {
-  background('green');
+  clear();
 
   //Strecke und Böden draw
-  startpunkt.draw();
   strecke01.draw();
   strecke02.draw();
   strecke03.draw();
@@ -139,14 +149,14 @@ function draw() {
 
 
   //Ball und Maus draw
-  ball.draw();
+  if (ballVisible == true) {
+    ball.draw();
+  }
   mouse.draw();
 
   //Hindernisse und Spielmechanismen draw
   eis01.draw();
   eis02.draw();
-  holzstapeltest01.draw();
-  iglu01.draw();
   rampe01.draw();
   aufzug01.draw();
   aufzug02.draw();
@@ -173,14 +183,10 @@ function scrollFollow(object) {
       }, 720);
 
       //Parallax effect
-      ebene01 = ebene01 + 1;
-      ebene02 = ebene02 + 5;
-      ebene03 = ebene03 + 50;
-      ebene04 = ebene04 + 10;
+      ebene01 = ebene01;
+      ebene02 = ebene02 + 3;
       document.getElementById("ebene01").style.left = ebene01;
       document.getElementById("ebene02").style.left = ebene02;
-      document.getElementById("ebene03").style.left = ebene03;
-      document.getElementById("ebene04").style.left = ebene04;
     }
   }
 }
@@ -188,7 +194,7 @@ function scrollFollow(object) {
 function insideViewport(object) {
   const x = object.body.position.x;
   const pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
-  if (x >= pageXOffset && x <= pageXOffset + windowWidth * 0.6) {
+  if (x >= pageXOffset && x <= pageXOffset + windowWidth * 0.3) {
     return true;
   } else {
     return false;
@@ -201,6 +207,11 @@ function eis(object) {
   const y = object.body.position.y;
   const engine = Matter.Engine.create();
 
+  //Startschwung
+  if (x >= 300 && x < 400 && y >=480) {
+    object.body.position.x = object.body.position.x +1;
+    engine.timing.timeScale = 1.5;
+  }
   //eis01
   if (x >= 900 && x < 1100 && y >=480) {
     object.body.position.x = object.body.position.x +1;
@@ -212,15 +223,46 @@ function eis(object) {
     engine.timing.timeScale = 1.5;
   }
   //rampe01
-  if (x >= 3100 && x < 3300 && y >=520) {
-    object.body.position.x = object.body.position.x +1.5;
-    engine.timing.timeScale = 1.5;
+  if (x >= 3000 && x < 3300 && y >=520) {
+    object.body.position.x = object.body.position.x +1.2;
+  }
+  //Ende01
+  if (x >= 3400 && x < 3600 && y >=520) {
+    object.body.position.x = object.body.position.x +0.5;
+    engine.timing.timeScale = 1.2;
+  }
+  //Ende02
+  if (x >= 3700 && x < 3900 && y >=530) {
+    object.body.position.x = object.body.position.x +0.5;
+    engine.timing.timeScale = 1.2;
+  }
+  //Ende03
+  if (x >= 4100 && x < 4180) {
+    object.body.position.x = object.body.position.x +0.2;
+  }
+  //Endsequenz
+  if (x >= 4180 && endSequenz == false) {
+    endSequenz = true;
+    ballVisible = false;
+    gameEnd(ball);
   }
   else
   {
     object.body.position.x = object.body.position.x;
     engine.timing.timeScale = 1.0;
   }
+}
+
+//Führt Endsequenz aus und stoppt das Spiel
+function gameEnd (object){
+  Matter.Body.setPosition(object.body, {x:4340,y:500});
+  ballVisible = true;
+    Matter.Body.applyForce(
+      ball.body,
+      {x: ball.body.position.x, y: ball.body.position.y},
+      {x: 0 , y: -0.14  });
+   endSequenz = false;
+
 }
 
 //Löst das Game Over aus und resetet den Ball

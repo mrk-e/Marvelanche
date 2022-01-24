@@ -15,6 +15,7 @@
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBlock.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBall.js"></script>
+  <script language="javascript" type="text/javascript" src="../classes/PolygonFromPoints.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script> -->
   <style>
     body {
@@ -29,7 +30,7 @@
       width: 113;
       height: 73;
       background: url('Iglo.png') no-repeat;
-      z-index: 1;
+      z-index: 2;
     }
 
     #stein01 {
@@ -42,52 +43,134 @@
       z-index: 2;
     }
 
+    #holzstapel {
+      position: absolute;
+      left: 1500;
+      top: 550;
+      width: 90;
+      height: 82;
+      background: url('Holzstapel2.png') no-repeat;
+      z-index: 2;
+    }
+
+    #baum01 {
+      position: absolute;
+      left: 1660;
+      top: 420;
+      width: 149;
+      height: 250;
+      background: url('Baumgroß.png') no-repeat;
+      z-index: -1;
+    }
+
+    #baum02 {
+      position: absolute;
+      left: 1600;
+      top: 480;
+      width: 123;
+      height: 174;
+      background: url('Baumklein.png') no-repeat;
+      z-index: -1;
+    }
+
+    #haus01 {
+      position: absolute;
+      left: 4100;
+      top: 520;
+      width: 195;
+      height: 138;
+      background: url('Haus1.png') no-repeat;
+      z-index: -1;
+    }
+
+    #haus01Haelfte {
+      position: absolute;
+      left: 4156;
+      top: 520;
+      width: 195;
+      height: 138;
+      background: url('Haus1Haelfte.png') no-repeat;
+      z-index: 1;
+    }
+
+    #haus02 {
+      position: absolute;
+      left: 3950;
+      top: 484;
+      width: 132;
+      height: 170;
+      background: url('Haus2.png') no-repeat;
+      z-index: -1;
+    }
+
+    #haus03 {
+      position: absolute;
+      left: 3790;
+      top: 570;
+      width: 187;
+      height: 123;
+      background: url('Haus3klein.png') no-repeat;
+      z-index: -1;
+    }
+
+    #baum03 {
+      position: absolute;
+      left: 3860;
+      top: 495;
+      width: 123;
+      height: 174;
+      background: url('Baumklein.png') no-repeat;
+      z-index: -2;
+    }
+
+    #baum04 {
+      position: absolute;
+      left: 3790;
+      top: 465;
+      width: 123;
+      height: 174;
+      background: url('Baumklein.png') no-repeat;
+      z-index: -2;
+    }
+
     #ebene01 {
       position: absolute;
-      width: 600;
-      height: 385;
-      background: url('Sonne.png') no-repeat;
-      z-index: 3;
+      width: 4480;
+      height: 720;
+      background: url('Hintergrund1und2.png') no-repeat;
+      z-index: -3;
       pointer-events: none;
     }
 
     #ebene02 {
       position: absolute;
-      width: 3000;
-      height: 425;
-      background: url('Wolken.png') no-repeat;
-      z-index: 4;
+      width: 4138;
+      height: 720;
+      background: url('Hintergrund3.1.png') no-repeat;
+      z-index: -1;
       pointer-events: none;
     }
 
-    #ebene03 {
-      position: absolute;
-      width: 600;
-      height: 385;
-      background: url('Sonne.png') no-repeat;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    #ebene04 {
-      position: absolute;
-      width: 3000;
-      height: 425;
-      background: url('Wolken.png') no-repeat;
-      z-index: 6;
-      pointer-events: none;
-    }
   </style>
 </head>
 
 <body>
   <div id="iglu"></div>
   <div id="stein01"></div>
+  <div id="baum01"></div>
+  <div id="baum02"></div>
+  <div id="baum03"></div>
+  <div id="baum04"></div>
+  
+  <div id="holzstapel"></div>
+
+  <div id="haus01"></div>
+  <div id="haus01Haelfte"></div>
+  <div id="haus02"></div>
+  <div id="haus03"></div>
   <!-- Parallex Effect -->
   <div id="ebene01"></div>
   <div id="ebene02"></div>
-  <div id="ebene03"></div>
-  <div id="ebene04"></div>
 </body>
 
 </html>
