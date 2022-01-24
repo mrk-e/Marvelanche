@@ -78,7 +78,7 @@ function setup() {
     { x: 30, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
-  
+
   //Hindernisse und Spielmechanismen
   stein01 = new Block(world,
     { x: 850, y: 510, w: 60, h: 40, color: 'grey' },
@@ -127,7 +127,7 @@ function setup() {
 }
 
 function draw() {
-  background('green');
+  background('black');
 
   //Strecke und Böden draw
   startpunkt.draw();
@@ -150,7 +150,7 @@ function draw() {
   rampe01.draw();
   aufzug01.draw();
   aufzug02.draw();
-  
+
   //Spielmechanismus
   scrollFollow(ball);
   eis(ball);
@@ -216,7 +216,7 @@ function eis(object) {
     object.body.position.x = object.body.position.x +1.5;
     engine.timing.timeScale = 1.5;
   }
-  else 
+  else
   {
     object.body.position.x = object.body.position.x;
     engine.timing.timeScale = 1.0;
@@ -283,6 +283,6 @@ function keyPressed() {
       ball.body,
       {x: ball.body.position.x, y: ball.body.position.y},
       {x: 0.005 , y: -0.05}
-    ); 
+    );
   }
 }
