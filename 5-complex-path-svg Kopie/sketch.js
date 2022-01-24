@@ -18,7 +18,7 @@ function setup() {
 
   //Strecke und Böden
   startpunkt = new Block(world,
-    { x: 0, y: 62, w: 77, h: 25, color: 'grey' },
+    { x: 0, y: 62, w: 100, h: 25, color: 'grey' },
     { isStatic: true, angle: PI * 0.1  }
   );
 
@@ -50,7 +50,7 @@ function setup() {
     { x: 30, y: 50, r: 26, color: 'white' },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
-
+  
   //Hindernisse und Spielmechanismen
   stein01 = new Block(world,
     { x: 850, y: 510, w: 40, h: 40, color: 'grey' },
@@ -82,7 +82,7 @@ function draw() {
   //Hindernisse und Spielmechanismen draw
   stein01.draw();
   eis01.draw();
-
+  
   //Spielmechanismus
   scrollFollow(ball);
   eis(ball);
@@ -123,7 +123,7 @@ function eis(object) {
     object.body.position.x = object.body.position.x +1;
     engine.timing.timeScale = 1.5;
   }
-  else
+  else 
   {
     object.body.position.x = object.body.position.x;
     engine.timing.timeScale = 1.0;
