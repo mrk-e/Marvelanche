@@ -14,8 +14,80 @@
   <script language="javascript" type="text/javascript" src="../classes/PolygonFromSVG.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <script language="javascript" type="text/javascript" src="../classes/SpriteBlock.js"></script>
-  <style> body {padding: 0; margin: 0;} </style>
+  <script language="javascript" type="text/javascript" src="../classes/SpriteBall.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script> -->
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    #iglu {
+      position: absolute;
+      left: 1950;
+      top: 570;
+      width: 113;
+      height: 73;
+      background: url('Iglo.png') no-repeat;
+      z-index: 1;
+    }
+
+    #stein01 {
+      position: absolute;
+      left: 820;
+      top: 484;
+      width: 83;
+      height: 50;
+      background: url('Stein.png') no-repeat;
+      z-index: 2;
+    }
+
+    #ebene01 {
+      position: absolute;
+      width: 600;
+      height: 385;
+      background: url('Sonne.png') no-repeat;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    #ebene02 {
+      position: absolute;
+      width: 3000;
+      height: 425;
+      background: url('Wolken.png') no-repeat;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    #ebene03 {
+      position: absolute;
+      width: 600;
+      height: 385;
+      background: url('Sonne.png') no-repeat;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    #ebene04 {
+      position: absolute;
+      width: 3000;
+      height: 425;
+      background: url('Wolken.png') no-repeat;
+      z-index: 6;
+      pointer-events: none;
+    }
+  </style>
 </head>
+
 <body>
+  <div id="iglu"></div>
+  <div id="stein01"></div>
+  <!-- Parallex Effect -->
+  <div id="ebene01"></div>
+  <div id="ebene02"></div>
+  <div id="ebene03"></div>
+  <div id="ebene04"></div>
 </body>
+
 </html>
