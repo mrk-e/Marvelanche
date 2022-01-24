@@ -42,7 +42,7 @@ function setup() {
   );
 
   strecke01 = new PolygonFromSVG(world,
-    { x: 150, y: 400, fromFile: './element2-1.svg', scale: 1, color: 'red' },
+    { x: 150, y: 400, fromFile: './test1.svg', scale: 1, color: 'red' },
     { isStatic: true, friction: 0.0 }
   );
 
@@ -127,7 +127,7 @@ function setup() {
 }
 
 function draw() {
-  background('black');
+  background('green');
 
   //Strecke und Böden draw
   startpunkt.draw();
