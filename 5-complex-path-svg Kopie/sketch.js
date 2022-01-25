@@ -14,6 +14,7 @@ let ballImg;
 
 let ebene01;
 let ebene02;
+let wolke;
 
 let posAufzug01Unten = true;
 let posAufzug02Unten = false;
@@ -32,6 +33,7 @@ function setup() {
   
   ebene01 = 0;
   ebene02 = 0;
+  wolke = 330;
 
   //Strecke und Böden
 
@@ -141,7 +143,6 @@ function draw() {
   clear();
 
   //Strecke und Böden draw
-  strecke01.draw();
   strecke02.draw();
   strecke03.draw();
   strecke04.draw();
@@ -183,10 +184,12 @@ function scrollFollow(object) {
       }, 720);
 
       //Parallax effect
+      if (endSequenz == false) {
       ebene01 = ebene01;
       ebene02 = ebene02 + 3;
       document.getElementById("ebene01").style.left = ebene01;
       document.getElementById("ebene02").style.left = ebene02;
+      }
     }
   }
 }
@@ -218,7 +221,7 @@ function eis(object) {
     engine.timing.timeScale = 1.5;
   }
   //eis02
-  if (x >= 1650 && x < 1900 && y >=620) {
+  if (x >= 1600 && x < 1900 && y >=620) {
     object.body.position.x = object.body.position.x +1;
     engine.timing.timeScale = 1.5;
   }
@@ -231,12 +234,17 @@ function eis(object) {
     object.body.position.x = object.body.position.x +0.5;
     engine.timing.timeScale = 1.2;
   }
-  //Ende02
+  
+  //FabrikWolke
+  if (x >= 3700) {
+    wolke = wolke - 0.5;
+      document.getElementById("fabrikWolke").style.top = wolke;
+      //Ende02
   if (x >= 3700 && x < 3900 && y >=530) {
     object.body.position.x = object.body.position.x +0.5;
     engine.timing.timeScale = 1.2;
   }
-  //Ende03
+      //Ende03
   if (x >= 4100 && x < 4180) {
     object.body.position.x = object.body.position.x +0.2;
   }
@@ -246,6 +254,8 @@ function eis(object) {
     ballVisible = false;
     gameEnd(ball);
   }
+  }
+  
   else
   {
     object.body.position.x = object.body.position.x;
@@ -255,14 +265,12 @@ function eis(object) {
 
 //Führt Endsequenz aus und stoppt das Spiel
 function gameEnd (object){
-  Matter.Body.setPosition(object.body, {x:4340,y:500});
+  Matter.Body.setPosition(object.body, {x:4295,y:470});
   ballVisible = true;
     Matter.Body.applyForce(
       ball.body,
       {x: ball.body.position.x, y: ball.body.position.y},
       {x: 0 , y: -0.14  });
-   endSequenz = false;
-
 }
 
 //Löst das Game Over aus und resetet den Ball

@@ -26,7 +26,7 @@
     #iglu {
       position: absolute;
       left: 1950;
-      top: 570;
+      top: 573;
       width: 113;
       height: 73;
       background: url('Iglo.png') no-repeat;
@@ -46,17 +46,58 @@
     #holzstapel {
       position: absolute;
       left: 1500;
-      top: 550;
-      width: 90;
-      height: 82;
-      background: url('Holzstapel2.png') no-repeat;
+      top: 548;
+      width: 100;
+      height: 92;
+      background: url('HolzstapelNeu.png') no-repeat;
       z-index: 2;
+      transform: rotate(90);
+    }
+
+    #bahn01 {
+      position: absolute;
+      left: 0;
+      top: 65;
+      width: 497;
+      height: 655;
+      background: url('Bahn1.png') no-repeat;
+      z-index: 1;
+    }
+
+    #bahn02 {
+      position: absolute;
+      left: 560;
+      top: 472;
+      width: 1620;
+      height: 249;
+      background: url('Bahn2.png') no-repeat;
+      z-index: 1;
+    }
+
+    #bahn03 {
+      position: absolute;
+      left: 2730;
+      top: 164;
+      width: 551;
+      height: 556;
+      background: url('Bahn3.png') no-repeat;
+      z-index: 1;
+    }
+
+    #bahn04 {
+      position: absolute;
+      left: 3391;
+      top: 505;
+      width: 1091;
+      height: 216;
+      background: url('Bahn4.png') no-repeat;
+      z-index: 3;
     }
 
     #baum01 {
       position: absolute;
       left: 1660;
-      top: 420;
+      top: 424;
       width: 149;
       height: 250;
       background: url('Baumgroß.png') no-repeat;
@@ -66,7 +107,7 @@
     #baum02 {
       position: absolute;
       left: 1600;
-      top: 480;
+      top: 485;
       width: 123;
       height: 174;
       background: url('Baumklein.png') no-repeat;
@@ -83,6 +124,16 @@
       z-index: -1;
     }
 
+    #schriftStein {
+      position: absolute;
+      left: 720;
+      top: 585;
+      width: 75;
+      height: 29;
+      background: url('schriftStein02.png') no-repeat;
+      z-index: 2;
+    }
+
     #haus01Haelfte {
       position: absolute;
       left: 4156;
@@ -90,8 +141,29 @@
       width: 195;
       height: 138;
       background: url('Haus1Haelfte.png') no-repeat;
+      z-index: 2;
+    }
+
+    #fabrik01 {
+      position: absolute;
+      left: 4210;
+      top: 423;
+      width: 216;
+      height: 251;
+      background: url('FabrikNeu.png') no-repeat;
       z-index: 1;
     }
+
+    #fabrikWolke {
+      position: absolute;
+      left: 4266;
+      top: 320;
+      width: 78;
+      height: 99;
+      background: url('wolke.png') no-repeat;
+      z-index: 1;
+    }
+
 
     #haus02 {
       position: absolute;
@@ -161,13 +233,24 @@
   <div id="baum02"></div>
   <div id="baum03"></div>
   <div id="baum04"></div>
-  
+
+  <div id="bahn01"></div>
+  <div id="bahn02"></div>
+  <div id="bahn03"></div>
+  <div id="bahn04"></div>
+
   <div id="holzstapel"></div>
+
+  <div id="schriftStein"></div>
+
 
   <div id="haus01"></div>
   <div id="haus01Haelfte"></div>
   <div id="haus02"></div>
   <div id="haus03"></div>
+  <div id="fabrik01"></div>
+  <div id="fabrikWolke"></div>
+
   <!-- Parallex Effect -->
   <div id="ebene01"></div>
   <div id="ebene02"></div>
