@@ -21,6 +21,13 @@ let posAufzug02Unten = false;
 let ballVisible = true;
 let endSequenz = false;
 
+let kanoneSound;
+
+function preload() {
+  // load sound
+  kanoneSound = loadSound('./testSound.mp3');
+  kanoneSound.playMode('sustain');
+}
 function setup() {
   createCanvas(4480, 720); //1280
 
@@ -34,6 +41,8 @@ function setup() {
   ebene01 = 0;
   ebene02 = 0;
   wolke = 330;
+
+  preload();
 
   //Strecke und Böden
 
@@ -71,7 +80,7 @@ function setup() {
   mouse = new Mouse(engine, canvas);
 
   ball = new SpriteBall(world,
-    { x: 30, y: 50, r: 26, image: ballImg },
+    { x: 3000, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
 
@@ -271,6 +280,7 @@ function gameEnd (object){
       ball.body,
       {x: ball.body.position.x, y: ball.body.position.y},
       {x: 0 , y: -0.14  });
+      kanoneSound.play();
 }
 
 //Löst das Game Over aus und resetet den Ball
@@ -334,5 +344,6 @@ function keyPressed() {
       {x: ball.body.position.x, y: ball.body.position.y},
       {x: 0.005 , y: -0.05}
     );
+    kanoneSound.play();
   }
 }
