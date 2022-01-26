@@ -20,9 +20,11 @@ let posAufzug01Unten = true;
 let posAufzug02Unten = false;
 let ballVisible = true;
 let endSequenz = false;
+let spielStart = false;
 
 let kanoneSound;
 let jumpSound;
+let windSound;
 
 function preload() {
   // load sound
@@ -30,6 +32,8 @@ function preload() {
   kanoneSound.playMode('sustain');
   jumpSound = loadSound('./schneeSound.mp3');
   jumpSound.playMode('sustain');
+  windSound = loadSound('./windSound.mp3');
+  windSound.playMode('sustain');
 }
 
 function setup() {
@@ -49,7 +53,6 @@ function setup() {
   preload();
 
   //Strecke und Böden
-
   strecke01 = new PolygonFromSVG(world,
     { x: 280, y: 500, fromFile: './pfad1.svg', scale: 1.2, color: 'red' },
     { isStatic: true, friction: 0.0 }
@@ -150,6 +153,7 @@ function setup() {
 
   //run the engine
   Matter.Runner.run(engine);
+  spielStart = true;
 }
 
 function draw() {
@@ -185,7 +189,15 @@ function draw() {
 
   //Anzeigen der FrameRate in der Konsole
   let frameRateValue = getFrameRate();
-  //console.log("Framerate: " + frameRateValue);
+  console.log("Framerate: " + frameRateValue);
+}
+
+function spielStart(){
+  if(spielStart = true) {
+    //Amplitude einfügen, so dass man die Lautstärke anpassen kann
+  windSound.play();
+  spielStart = false;
+  }
 }
 
 //Kamera
@@ -379,3 +391,5 @@ function keyPressed() {
     jumpSound.play();
   }
 }
+
+
