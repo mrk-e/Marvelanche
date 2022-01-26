@@ -26,9 +26,9 @@ let jumpSound;
 
 function preload() {
   // load sound
-  kanoneSound = loadSound('./testSound.mp3');
+  kanoneSound = loadSound('./kanoneSound.m4a');
   kanoneSound.playMode('sustain');
-  jumpSound = loadSound('./testSound.mp3');
+  jumpSound = loadSound('./schneeSound.mp3');
   jumpSound.playMode('sustain');
 }
 
@@ -84,7 +84,7 @@ function setup() {
   mouse = new Mouse(engine, canvas);
 
   ball = new SpriteBall(world,
-    { x: 30, y: 50, r: 26, image: ballImg },
+    { x: 3800, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
 
@@ -178,7 +178,7 @@ function draw() {
   //Spielmechanismus
   scrollFollow(ball);
   eis(ball);
-  schrift(ball);
+  //schrift(ball);
   gameover(ball);
   aufzug01Steuerung(aufzug01);
   aufzug02Steuerung(aufzug02);
@@ -190,6 +190,7 @@ function draw() {
 
 //Kamera
 function scrollFollow(object) {
+  if (endSequenz == false) {
   if (insideViewport(object) == false) {
     const $element = $('html, body');
     if ($element.is(':animated') == false) {
@@ -198,7 +199,6 @@ function scrollFollow(object) {
       }, 720);
 
       //Parallax effect
-      if (endSequenz == false) {
       ebene01 = ebene01;
       ebene02 = ebene02 + 3;
       document.getElementById("ebene01").style.left = ebene01;
@@ -280,14 +280,27 @@ function eis(object) {
 
 function schrift(object) {
   const x = object.body.position.x;
-  //schriftStein
-  if (x >= 100 && x < 400) {
-    console.log("true");
-    document.getElementById("schriftStein").style.visibility = "visible";
+  if (x>=400) {
+  document.getElementById("text01").style.visibility = "visible";
+  document.getElementById("text02").style.visibility = "visible";
+  document.getElementById("text03").style.visibility = "hidden";
+  document.getElementById("text04").style.visibility = "hidden";
+  document.getElementById("text05").style.visibility = "hidden";
+  document.getElementById("text06").style.visibility = "hidden";
+  document.getElementById("text07").style.visibility = "hidden";
   }
   if (x>=500 & x < 600) {
-    document.getElementById("schriftStein").style.visibility = "hidden";
-
+    document.getElementById("text01").style.visibility = "hidden";
+    document.getElementById("text03").style.visibility = "visible";
+  }
+  if (x>=600& x < 610) {
+    document.getElementById("text02").style.visibility = "hidden";
+  }
+  if (x>=800& x < 810) {
+    document.getElementById("text04").style.visibility = "visible";
+  }
+  if (x>=1200& x < 1010) {
+    document.getElementById("text03").style.visibility = "hidden";
   }
 }
 
