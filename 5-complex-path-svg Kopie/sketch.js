@@ -22,12 +22,16 @@ let ballVisible = true;
 let endSequenz = false;
 
 let kanoneSound;
+let jumpSound;
 
 function preload() {
   // load sound
   kanoneSound = loadSound('./testSound.mp3');
   kanoneSound.playMode('sustain');
+  jumpSound = loadSound('./testSound.mp3');
+  jumpSound.playMode('sustain');
 }
+
 function setup() {
   createCanvas(4480, 720); //1280
 
@@ -40,7 +44,7 @@ function setup() {
   
   ebene01 = 0;
   ebene02 = 0;
-  wolke = 330;
+  wolke = 320;
 
   preload();
 
@@ -80,7 +84,7 @@ function setup() {
   mouse = new Mouse(engine, canvas);
 
   ball = new SpriteBall(world,
-    { x: 3000, y: 50, r: 26, image: ballImg },
+    { x: 30, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
 
@@ -174,13 +178,14 @@ function draw() {
   //Spielmechanismus
   scrollFollow(ball);
   eis(ball);
+  schrift(ball);
   gameover(ball);
   aufzug01Steuerung(aufzug01);
   aufzug02Steuerung(aufzug02);
 
   //Anzeigen der FrameRate in der Konsole
   let frameRateValue = getFrameRate();
-  console.log("Framerate: " + frameRateValue);
+  //console.log("Framerate: " + frameRateValue);
 }
 
 //Kamera
@@ -245,8 +250,8 @@ function eis(object) {
   }
   
   //FabrikWolke
-  if (x >= 3700) {
-    wolke = wolke - 0.5;
+  if (x >= 3000) {
+    wolke = wolke - 0.3;
       document.getElementById("fabrikWolke").style.top = wolke;
       //Ende02
   if (x >= 3700 && x < 3900 && y >=530) {
@@ -269,6 +274,20 @@ function eis(object) {
   {
     object.body.position.x = object.body.position.x;
     engine.timing.timeScale = 1.0;
+    
+  }
+}
+
+function schrift(object) {
+  const x = object.body.position.x;
+  //schriftStein
+  if (x >= 100 && x < 400) {
+    console.log("true");
+    document.getElementById("schriftStein").style.visibility = "visible";
+  }
+  if (x>=500 & x < 600) {
+    document.getElementById("schriftStein").style.visibility = "hidden";
+
   }
 }
 
@@ -344,6 +363,6 @@ function keyPressed() {
       {x: ball.body.position.x, y: ball.body.position.y},
       {x: 0.005 , y: -0.05}
     );
-    kanoneSound.play();
+    jumpSound.play();
   }
 }
