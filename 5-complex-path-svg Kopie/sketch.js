@@ -24,7 +24,6 @@ let spielStart = false;
 
 let kanoneSound;
 let jumpSound;
-let windSound;
 
 function preload() {
   // load sound
@@ -32,8 +31,6 @@ function preload() {
   kanoneSound.playMode('sustain');
   jumpSound = loadSound('./schneeSound.mp3');
   jumpSound.playMode('sustain');
-  windSound = loadSound('./windSound.mp3');
-  windSound.playMode('sustain');
 }
 
 function setup() {
@@ -87,7 +84,7 @@ function setup() {
   mouse = new Mouse(engine, canvas);
 
   ball = new SpriteBall(world,
-    { x: 3800, y: 50, r: 26, image: ballImg },
+    { x: 30, y: 50, r: 26, image: ballImg },
     { friction: 0.25, plugin: { wrap: wrap } }
   );
 
@@ -190,14 +187,6 @@ function draw() {
   //Anzeigen der FrameRate in der Konsole
   let frameRateValue = getFrameRate();
   console.log("Framerate: " + frameRateValue);
-}
-
-function spielStart(){
-  if(spielStart = true) {
-    //Amplitude einfügen, so dass man die Lautstärke anpassen kann
-  windSound.play();
-  spielStart = false;
-  }
 }
 
 //Kamera
