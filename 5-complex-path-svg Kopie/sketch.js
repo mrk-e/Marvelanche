@@ -42,7 +42,7 @@ function setup() {
 
   aufzugImg = loadImage('Aufzug.png');
   ballImg = loadImage('Schneekugel.png');
-  
+
   ebene01 = 0;
   ebene02 = 0;
   wolke = 320;
@@ -119,12 +119,12 @@ function setup() {
   );
 
   aufzug01 = new SpriteBlock(world,
-    { x: 2300, y: 620, w: 198, h: 61, image: aufzugImg },
+    { x: 2300, y: 200, w: 198, h: 61, image: aufzugImg },
     { isStatic: true, angle: 0  }
   );
 
   aufzug02 = new SpriteBlock(world,
-    { x: 2600, y: 200, w: 198, h: 61, image: aufzugImg },
+    { x: 2600, y: 620, w: 198, h: 61, image: aufzugImg },
     { isStatic: true, angle: 0  }
   );
 
@@ -249,7 +249,7 @@ function eis(object) {
     object.body.position.x = object.body.position.x +0.5;
     engine.timing.timeScale = 1.2;
   }
-  
+
   //FabrikWolke
   if (x >= 3000) {
     wolke = wolke - 0.3;
@@ -270,12 +270,12 @@ function eis(object) {
     gameEnd(ball);
   }
   }
-  
+
   else
   {
     object.body.position.x = object.body.position.x;
     engine.timing.timeScale = 1.0;
-    
+
   }
 }
 
@@ -375,10 +375,8 @@ function keyPressed() {
     Matter.Body.applyForce(
       ball.body,
       {x: ball.body.position.x, y: ball.body.position.y},
-      {x: 0.005 , y: -0.05}
+      {x: 0.004 , y: -0.035}
     );
     jumpSound.play();
   }
 }
-
-
