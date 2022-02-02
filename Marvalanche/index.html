@@ -32,11 +32,11 @@
       top: 573;
       width: 113;
       height: 73;
-      background: url('Iglo.png') no-repeat;
+      background: url('Iglu.png') no-repeat;
       z-index: 2;
     }
 
-    #stein01 {
+    #stein {
       position: absolute;
       left: 820;
       top: 484;
@@ -195,78 +195,6 @@
       z-index: -1;
     }
 
-    #haus01 {
-      position: absolute;
-      left: 4100;
-      top: 520;
-      width: 195;
-      height: 138;
-      background: url('Haus1.png') no-repeat;
-      z-index: -1;
-    }
-
-    #schriftStein {
-      position: absolute;
-      left: 720;
-      top: 585;
-      width: 75;
-      height: 29;
-      background: url('schriftStein02.png') no-repeat;
-      z-index: 2;
-      visibility: hidden;
-    }
-
-    #haus01Haelfte {
-      position: absolute;
-      left: 4156;
-      top: 520;
-      width: 195;
-      height: 138;
-      background: url('Haus1Haelfte.png') no-repeat;
-      z-index: 2;
-    }
-
-    #fabrik01 {
-      position: absolute;
-      left: 4210;
-      top: 423;
-      width: 216;
-      height: 251;
-      background: url('FabrikNeu.png') no-repeat;
-      z-index: 1;
-    }
-
-    #fabrikWolke {
-      position: absolute;
-      left: 4266;
-      top: 320;
-      width: 78;
-      height: 99;
-      background: url('wolke.png') no-repeat;
-      z-index: 1;
-    }
-
-
-    #haus02 {
-      position: absolute;
-      left: 3950;
-      top: 484;
-      width: 132;
-      height: 170;
-      background: url('Haus2.png') no-repeat;
-      z-index: -1;
-    }
-
-    #haus03 {
-      position: absolute;
-      left: 3790;
-      top: 570;
-      width: 187;
-      height: 123;
-      background: url('Haus3klein.png') no-repeat;
-      z-index: -1;
-    }
-
     #baum03 {
       position: absolute;
       left: 3860;
@@ -287,11 +215,71 @@
       z-index: -2;
     }
 
+    #haus01 {
+      position: absolute;
+      left: 4100;
+      top: 520;
+      width: 195;
+      height: 138;
+      background: url('Haus1.png') no-repeat;
+      z-index: -1;
+    }
+
+    #haus01Haelfte {
+      position: absolute;
+      left: 4156;
+      top: 520;
+      width: 195;
+      height: 138;
+      background: url('Haus1Haelfte.png') no-repeat;
+      z-index: 2;
+    }
+
+    #haus02 {
+      position: absolute;
+      left: 3950;
+      top: 484;
+      width: 132;
+      height: 170;
+      background: url('Haus2.png') no-repeat;
+      z-index: -1;
+    }
+
+    #haus03 {
+      position: absolute;
+      left: 3790;
+      top: 570;
+      width: 187;
+      height: 123;
+      background: url('Haus3.png') no-repeat;
+      z-index: -1;
+    }
+
+    #fabrik {
+      position: absolute;
+      left: 4210;
+      top: 423;
+      width: 216;
+      height: 251;
+      background: url('FabrikNeu.png') no-repeat;
+      z-index: 1;
+    }
+
+    #fabrikWolke {
+      position: absolute;
+      left: 4266;
+      top: 320;
+      width: 78;
+      height: 99;
+      background: url('Wolke.png') no-repeat;
+      z-index: 1;
+    }
+
     #ebene01 {
       position: absolute;
       width: 4480;
       height: 720;
-      background: url('Hintergrund1und2.png') no-repeat;
+      background: url('Hintergrund.png') no-repeat;
       z-index: -3;
       pointer-events: none;
     }
@@ -300,48 +288,48 @@
       position: absolute;
       width: 4138;
       height: 720;
-      background: url('WolkenHintergrundNeu.png') no-repeat;
+      background: url('HintergrundWolken.png') no-repeat;
       z-index: -1;
       pointer-events: none;
     }
-
   </style>
 </head>
 
 <body>
-
+  <!-- Hintergrundmusik -->
   <audio autoplay="autoplay"loop="loop">
     <source src="windSound.mp3" type="audio/mpeg" />     
 
 </audio>
+  <div id="holzstapel"></div>
+  <div id="stein"></div>
   <div id="iglu"></div>
-  <div id="stein01"></div>
+
+  <!-- Baeume -->
   <div id="baum01"></div>
   <div id="baum02"></div>
   <div id="baum03"></div>
   <div id="baum04"></div>
 
+  <!-- Bahndesign -->
   <div id="bahn01"></div>
   <div id="bahn02"></div>
   <div id="bahn03"></div>
   <div id="bahn04"></div>
 
-  <div id="holzstapel"></div>
-
-  <div id="schriftStein"></div>
-
-
+  <!-- Haeuser -->
   <div id="haus01"></div>
   <div id="haus01Haelfte"></div>
   <div id="haus02"></div>
   <div id="haus03"></div>
-  <div id="fabrik01"></div>
+  <div id="fabrik"></div>
   <div id="fabrikWolke"></div>
 
-  <!-- Parallex Effect -->
+  <!-- Parallax Effekt -->
   <div id="ebene01"></div>
   <div id="ebene02"></div>
 
+  <!--  Beschriftung -->
   <div id="text01"></div>
   <div id="text02"></div>
   <div id="text03"></div>
@@ -349,8 +337,6 @@
   <div id="text05"></div>  
   <div id="text06"></div>
   <div id="text07"></div>
-
-
 </body>
 
 </html>
